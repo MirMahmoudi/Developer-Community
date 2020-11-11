@@ -1,0 +1,27 @@
+
+<%- include("./components/header") %>
+
+    <div class="header">
+        <h1>Add Question </h1>
+    </div>
+
+    <form method="POST" action="/add-question">
+        <div class="form-group">
+            <h5>Add Question </h5>
+            <input type="text" name="question" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Question">
+            <% if( err && err.question) {%>
+            <small class="error" class="form-text text-muted">
+                <%= err['question'].message %></small>
+            <% } %>
+        </div>
+        <div class="form-group">
+            <input type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Description">
+            <% if( err && err.description) {%>
+            <small class="error" class="form-text text-muted">
+                <%= err['description'].message %></small>
+            <% } %>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+<%- include("./components/footer") %>

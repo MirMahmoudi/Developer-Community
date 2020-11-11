@@ -1,0 +1,37 @@
+<%- include("./components/header") %>
+
+    <div class="header">
+        <h1>Matrix Master Community </h1>
+        <% let nuQuestion = 0 %>
+        <% if (newResult.length > 0 ) {%>
+            <% newResult.forEach(element=> { %>
+                <% nuQuestion += 1 %>
+            <% }); %>
+        <% } %>
+        <h4>There are <%= nuQuestion %> questions</h4>
+    </div>
+
+
+    <% if (newResult.length > 0 ) {%>
+        <% newResult.forEach(element=> { %>
+            <% element.question %>
+            <% element.description %>
+            <div class="card">
+                <div class="card-header">
+                    <span> This question from :{ <%= element.user_id.username%> }</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title"> <%= element.question %></h4>
+                    <p class="card-text"><%= element.description %></p>
+                    
+                    <p class="date"> <%= element.createdAt %></p>
+                    <a href="/question/<%= element.question_id %>" class="card-link">See More</a>
+                </div>
+            </div>
+        <% }); %>
+        
+    <% } else {%>
+        <div class="noData">There is no Question.</div>
+    <% } %>
+    
+<%- include("./components/footer") %>

@@ -1,0 +1,52 @@
+
+<%- include("./components/header") %>
+    <% if (result) {%>
+        <div class="card">
+            <div class="card-header">
+                <span>This question is from: { <%= result.user_id.username %> } </span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title"><%= result.question %></h4>
+                <h5 class="card-text"><%= result.description %></h5>
+                <p> <%= result.createdAt.toISOString() %> </p>
+                <% if (locals.user) { %>
+                    <% if(user.id == result.user_id._id ) { %>
+                        <a href=/edit-question/<%= result._id%> class="btn btn-primary">Update</a>
+                        <a href=/delete-question/<%= result._id%> class="btn btn-warning">Delete</a>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    <% } else {%>
+        There is no data
+    <% } %>
+
+    <form method="POST" action="/question/<%= result._id %>">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Add A Comment</label>
+            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <% if (comments.length > 0) { %>
+        <% comments.forEach(element => { %>
+            <div class="card card2">
+                <div class="card-body">
+                    <h6 class="card-title">{ <%= element.user_id.username %> } add this comment</h6>
+                    <hr>
+                    <p class="card-text"><%= element.comment %></p>
+                    <p><%= element.createdAt.toISOString()%></p>
+                    <% if (locals.user) { %>
+                        <% if(user.id == element.user_id._id) { %>
+                            <a href=/delete-comment/<%= element.id %> class="btn btn-warning">Delete</a>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <P>There is no Comment.</P>
+    <% }; %>
+
+<%- include("./components/footer") %>
