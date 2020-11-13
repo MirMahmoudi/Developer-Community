@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 axios.defaults.withCredentials = true;
 
 export default class HomePage extends Component {
@@ -40,9 +41,9 @@ export default class HomePage extends Component {
         return (
             <div>
                  <button onClick={this.logOut}>Logout</button>
-    
                  Hello from home page
                  <h1>Welcome { session && session.userName}</h1>
+                 <Link to='/auth2' >login</Link>
             </div>
         )
     }
