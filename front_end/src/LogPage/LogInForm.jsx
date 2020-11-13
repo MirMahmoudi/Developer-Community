@@ -35,7 +35,8 @@ export default class LogInForm extends Component {
                     })
                     console.log(res.data)
                     if(res.data.user){
-                        window.location.href='/'
+                        // console.log(this.props.pushHistory)
+                        this.props.pushHistory('/')
 
                     }
 

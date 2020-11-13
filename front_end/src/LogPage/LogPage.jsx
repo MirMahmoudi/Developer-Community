@@ -24,7 +24,7 @@ export default class LogPage extends Component {
                 <Link to='/' >home</Link>
                 <h1>Log in and sign up page</h1>
                 <SignUpForm />
-                <LogInForm />
+                <LogInForm pushHistory = {this.props.history.push}/>
             </div>
         )
     }

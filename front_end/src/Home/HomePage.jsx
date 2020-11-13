@@ -22,7 +22,7 @@ export default class HomePage extends Component {
                 userName: data.username
             } : console.log("no user");
             //*****redirect to another componant*****
-            // window.location.href = "/auth2"
+            // this.props.history.push('/');
             this.setState({session:newSession})
         }).catch((err)=>{
             console.log(err)
@@ -30,7 +30,9 @@ export default class HomePage extends Component {
     }
     logOut = e => {
         axios.get("http://localhost:9000/logout").then((response)=>{
-            window.location.href = "/";
+            // window.location.href = "/";
+            // console.log(this.props.history.push)
+            this.props.history.push('/auth2');
           }).catch((err)=>{
             console.log(err)
           })
@@ -40,10 +42,12 @@ export default class HomePage extends Component {
         const { session } = this.state
         return (
             <div>
-                 <button onClick={this.logOut}>Logout</button>
+                {(session ? <button onClick={this.logOut}>Logout</button> :
+                 <Link to='/auth2' >login</Link>)}
+                    
                  Hello from home page
                  <h1>Welcome { session && session.userName}</h1>
-                 <Link to='/auth2' >login</Link>
+                 
             </div>
         )
     }
