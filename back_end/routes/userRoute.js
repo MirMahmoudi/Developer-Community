@@ -11,10 +11,14 @@ const userController = require('../controllers/userController')
 router.all('*', checkUser)
 router.get('/', questionController.getHomepage)
 
-router.get('/auth', userController.getSignupPage)
-router.post('/auth', userController.postSignupPage)
-router.get('/auth2', userController.getLoginPage)
-router.post('/auth2', userController.postLoginPage)
-router.get('/logout', userController.getLogOutPage)
+router.get('/auth1' ,  userController.login_get)
+router.get('/auth2' , userController.signup_get)
+router.post('/auth/signup' ,  userController.signup_post)
+router.post('/auth/login' ,  userController.login_post)
+router.get('/logout' ,  userController.logout_get)
+router.get('/sessionUser', (req,res) => res.json({session: req.session.user}));
+
+// getallusers just for test
+// router.get('/allUsers' , userController.getAllUsers)
 
 module.exports = router

@@ -1,0 +1,40 @@
+<%- include("./components/header") %>
+  
+
+
+<h1 class="loginpage-title">Welcome to Matrix Master Community</h1>
+
+<div class="container " >   
+    <div class="div-form1 card text-white bg-info mb-3">
+        <form class="form1" method="POST" action="/auth/login">
+            <h4>Log In</h4>
+            <input type="text" id="fname" name="email" placeholder="Email">
+            <div class="emaillogin error1" id="err"></div>
+            <input type="password" id="lname" name="password" placeholder="Password">
+            <div class="passwordlogin error1" id="err"></div>
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+    </div>
+
+    <%- include("./components/form1.ejs") %>
+
+    <div class="div-form2 card text-white bg-info mb-3">
+        <form class="form2" method="POST" action="/auth/signup"> 
+            <h4>Sign Up</h4>
+            <input type="text" id="fname" name="username" placeholder="Username">
+            <div class="username error" id="err"></div>
+            <input type="text" id="lname" name="email" placeholder="Email">
+            <div class="email error" id="err"></div>
+            <input type="password" id="lname" name="password" placeholder="Password">
+            <div class="password error" id="err"></div>
+            <input type="password" id="lname" name="password2" placeholder=" confirmation Password">
+            <div class="password2 error" id="err"></div><br>
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+    </div>
+</div>
+<%- include("./components/form2.ejs") %>
+
+<img src="/images/sham-team.png" class="image2">
+
+<%- include("./components/footer") %>

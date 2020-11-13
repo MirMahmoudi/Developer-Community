@@ -1,0 +1,47 @@
+<script>
+    const form2 = document.querySelector('.form2');
+    const usernameError = document.querySelector('.username.error')
+    const emailError = document.querySelector('.email.error')
+    const passwordError = document.querySelector('.password.error')
+    const password2Error = document.querySelector('.pasrd2.error')
+        swo
+    form2.addEventListener('submit', async (e) =>{
+        e.preventDefault();
+        // reset the errors
+        usernameError.textContent = '';
+        emailError.textContent = '';
+        passwordError.textContent = '';
+        password2Error.textContent = '';
+        // get the values:
+        const username = form2.username.value;
+        const email = form2.email.value; 
+        const password = form2.password.value;
+        const password2 = form2.password2.value;
+        // console.log( email , password)
+        if(password2 !== password){
+            password2Error.textContent = 'password confirmation is incorrect';
+        } else {
+        try{
+            const res = await fetch('/auth/signup' , {
+              method: 'POST',
+              body : JSON.stringify({username , email ,  password}),  
+              headers : { 'content-type' : 'application/json'}
+            });
+            const data = await res.json();
+            console.log(data)
+            if(data.errors){
+                usernameError.textContent = data.errors.username;
+                emailError.textContent = data.errors.email;
+                passwordError.textContent = data.errors.password;
+            }
+            if(data.user){
+                location.assign('/')
+            }
+        }
+        catch (err){
+            console.log(err)
+        }
+     }
+    })
+
+</script>
